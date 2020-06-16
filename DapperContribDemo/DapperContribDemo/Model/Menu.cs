@@ -8,6 +8,8 @@ namespace DapperContribDemo.Model
     [Table("Menu")]
     public class Menu
     {
+        private readonly string conn = @"Data Source = localhost\SQLEXPRESS;Initial Catalog = DapperContrib; Integrated Security = True";
+
         [Key]
         public int Id { get; set; }
         public int ProductId { get; set; }
@@ -16,28 +18,28 @@ namespace DapperContribDemo.Model
 
         public Menu Read(int id)
         {
-            using (SqlConnection connection = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=DapperContrib;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(conn))
             {
                 return connection.Get<Menu>(id);
             }
         }
         public long Insert(Menu menu)
         {
-            using (SqlConnection connection = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=DapperContrib;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(conn))
             {
                 return connection.Insert(menu);
             }
         }
         public void Update(Menu menu)
         {
-            using (SqlConnection connection = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=DapperContrib;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(conn))
             {
                 connection.Update(menu);
             }
         }
         public void Delete(int id)
         {
-            using (SqlConnection connection = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=DapperContrib;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(conn))
             {
                 connection.Delete(new Menu() { Id = id });
             }
